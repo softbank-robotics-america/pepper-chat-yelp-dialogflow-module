@@ -261,8 +261,8 @@ class YelpPepperChat {
                 }
             },
             'yelp.search.business_selected.map_selected': () => {
-                console.log("Contexts -> " + JSON.stringify(request.body.queryResult.outputContexts));
-                let mapContext = request.body.queryResult.outputContexts.filter(context => context.name == session + "/contexts/" + "yelp_business_selected");
+                console.log("Contexts -> " + JSON.stringify(contexts));
+                let mapContext = contexts.filter(context => context.name == session + "/contexts/" + "yelp_business_selected");
                 let mapped_business = mapContext[0].parameters.business_info;
                 console.log("Map Parameters: ", JSON.stringify(mapped_business));
                 let mapSpeech = "Here is a general sense of how to get to " + mapped_business.name + " \\pau=10000\\ || :)";
@@ -280,7 +280,7 @@ class YelpPepperChat {
                 mapThenReturnToBizMenu.send((response));
             },
             'yelp.search.business_selected.more_info': () => {
-                let yelpBizContext = request.body.queryResult.outputContexts.filter(context => context.name == session + "/contexts/" + "yelp_business_selected");
+                let yelpBizContext = contexts.filter(context => context.name == session + "/contexts/" + "yelp_business_selected");
                 let business = yelpBizContext[0].parameters.business_info;
                 // console.log("Yelp Business Info Selected - Context: ", yelpBizContext[0]);
                 // console.log("Yelp Selected Business Info Parameters: ", business);
