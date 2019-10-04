@@ -1,0 +1,20 @@
+{
+  "name": "pepper-chat-yelp",
+  "version": "0.0.8",
+  "description": "A Pepper Chat plug-in that enables Yelp functionality for a Pepper on the Pepper Chat platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pepper",
+    "robot",
+    "pepper chat",
+    "dialogflow",
+    "host",
+    "yelp"
+  ],
+  "author": "Daniel Schofield",
+  "email": "daniel.schofield@softbankrobotics.com",
+  "license": "MIT"
+}
