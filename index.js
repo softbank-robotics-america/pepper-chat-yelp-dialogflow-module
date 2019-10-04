@@ -44,7 +44,7 @@ class YelpPepperChat {
                 httpAdapter: 'https', // Default
                 formatter: null // 'gpx', 'string', ...
             };
-            this.geocoder = new config.nodeGeocoderModule(options);
+            //this.geocoder = new config.nodeGeocoderModule(options);
             this.geocoder_enabled = true;
         } else {
             this.geocoder_enabled = false;
