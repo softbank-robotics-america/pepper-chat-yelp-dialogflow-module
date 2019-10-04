@@ -110,7 +110,7 @@ class YelpPepperChat {
                             for (let x = 0; x < numResponses; x++) {
                                 const businessRaw = yelp_response.jsonBody.businesses[x];
                                 // console.log(businessRaw);
-                                let businessthis.Carousel = new this.CarouselImage(
+                                let businessCarousel = new this.CarouselImage(
                                     (x + 1) + ") " + businessRaw.name, /* title */
                                     businessRaw.image_url, /* url */
                                     "business " + (x + 1) /* trigger new intent string */ );
@@ -127,7 +127,7 @@ class YelpPepperChat {
                                     "google_map_url": "https://maps.googleapis.com/maps/api/staticmap?markers=icon:" + pepperIconUrl + "%7C" + locationPepperUrl + "&markers=color:red%7C" + locationBusinessUrl + "&size=1280x800&path=color:red|weight:5|" + locationPepperUrl + "|" + locationBusinessUrl + "&key=" + this.googleMapsApiKey
                                 };
                                 businessContextStorageObj["business_" + (x + 1)] = contextObj;
-                                businessData.push(businessthis.Carousel);
+                                businessData.push(businessCarousel);
                             }
                             // Store business attribute information as context parameters so subsequent requests won't need to re-query Yelp API
                             var context = {
