@@ -19,12 +19,12 @@ class YelpPepperChat {
         if (!('PepperResponse' in pepperChatResponses)) {
             throw "Yelp Module requires Pepper Chat Library's PepperResponse"
         }
-        this.CarouselImage = pepperChatResponse.CarouselImage;
-        this.Carousel = pepperChatResponse.Carousel;
-        this.FullScreenImage = pepperChatResponse.FullScreenImage;
-        this.BasicText = pepperChatResponse.BasicText;
-        this.TriggerIntent = pepperChatResponse.TriggerIntent;
-        this.PepperResponse = pepperChatResponse.PepperResponse;
+        this.CarouselImage = pepperChatResponses.CarouselImage;
+        this.Carousel = pepperChatResponses.Carousel;
+        this.FullScreenImage = pepperChatResponses.FullScreenImage;
+        this.BasicText = pepperChatResponses.BasicText;
+        this.TriggerIntent = pepperChatResponses.TriggerIntent;
+        this.PepperResponse = pepperChatResponses.PepperResponse;
         // Yelp API Key
         if (!('yelpApiKey' in config)) {
             throw "Please provide Yelp API key as property 'yelpApiKey' in config object"
