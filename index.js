@@ -73,7 +73,7 @@ class YelpPepperChat {
                  * @return Promise => then => returns Yelp results in the form of a Pepper Chat this.Carousel object
                  */
                 let getYelpRecommendations = (searchTerms, filterBy, latitude, longitude) => {
-                    return new Promise(function(resolve, reject) {
+                    return new Promise((resolve, reject) => {
                         let message = "",
                             searchRequest = {
                                 term: searchTerms,
