@@ -239,7 +239,7 @@ class YelpPepperChat {
                         "https://pepperstorageprod.blob.core.windows.net/pepperdrive/6263cc44-7fef-49b3-bda7-1dda908ca19b33f76445-34e6-482e-a7ec-08c89956c84f",
                         "Map this location");
                     let yelpMenuCardsArray = [yelpBizInfoCard, yelpBizMapCard];
-                    let yelpBizMenuthis.Carousel = new this.Carousel(businessData.message, yelpMenuCardsArray);
+                    let yelpBizMenuCarousel = new this.Carousel(businessData.message, yelpMenuCardsArray);
                     let yelpBizMenuParameters = {
                         business_info: {
                             name: businessData.name,
@@ -252,7 +252,7 @@ class YelpPepperChat {
                             id: id
                         }
                     };
-                    let carouselResponse = new this.PepperResponse(yelpBizMenuthis.Carousel);
+                    let carouselResponse = new this.PepperResponse(yelpBizMenuCarousel);
                     carouselResponse.setContext({
                         name: "yelp_business_selected",
                         lifespan: 2,
