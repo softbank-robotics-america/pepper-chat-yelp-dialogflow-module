@@ -1,5 +1,5 @@
 class YelpPepperChat {
-    constructor(yelpModule, pepperChatResponses, config) {
+    constructor(pepperChatResponses, config) {
         // Pepper Chat Library responses required
         if (!('CarouselImage' in pepperChatResponses)) {
             throw "Yelp Module requires Pepper Chat Library's CarouselImage"
@@ -34,24 +34,23 @@ class YelpPepperChat {
             throw "Please provide Google Static Maps API key as property 'googleMapsApiKey' in config object"
         }
         // Geocoder API key optional -- allows for impromptu searching of other cities
-        if ('geocoder' in config) {
+        if ('nodeGeocoderModule' in config) {
             if (!('geocoderApiKey' in config)) {
                 throw "Please provide Geocoder API key as property 'geocoderApiKey' in config object"
             }
-            let NodeGeocoder = config.geocoder;
             let options = {
                 provider: 'google',
                 apiKey: config.geocoderApiKey,
                 httpAdapter: 'https', // Default
                 formatter: null // 'gpx', 'string', ...
             };
-            let geocoder = new NodeGeocoder(options);
+            this.geocoder = new config.nodeGeocoderModule(options);
             this.geocoder_enabled = true;
         } else {
             this.geocoder_enabled = false;
         }
         try {
-            this.yelp_client = yelpModule.client(config.yelpApiKey)
+            this.yelp_client = config.yelpModule.client(config.yelpApiKey)
             this.googleMapsApiKey = config.googleMapsApiKey;
         } catch (err) {
             throw `Could not properly initialize Yelp client: ${err}`
@@ -59,16 +58,8 @@ class YelpPepperChat {
         this.latitude = 'latitude' in config ? config.latitude : '40.723402';
         this.longitude = 'longitude' in config ? config.longitude : '-74.006673';
     }
-    localBusinessHandler({
-        body
-    }, response, {
-        action,
-        contexts,
-        parameters
-    }) {
-        let {
-            session
-        } = body;
+    localBusinessHandler( { body }, response, { action, contexts, parameters } ) {
+        let { session } = body;
         let localContext, local = (localContext = contexts.filter(context => context.name == "local")[0]) ? localContext.parameters || {} : {}; // Local context stores Pepper Chat CMS parameters
         let initContext, init = (initContext = contexts.filter(context => context.name == "init")[0]) ? initContext.parameters || {} : {}; // Init context stores init1234 Chatbot-wide parameters (used for SmallTalk intents)
         let localBizHandlers = {
@@ -180,7 +171,6 @@ class YelpPepperChat {
 
                 // If a specific city is asked about, grab the coordinates for that city
                 if (which_city) {
-                    const NodeGeocoder = require('node-geocoder');
                     console.log("Searching for latitude and longitude for " + which_city + " ...");
                     try {
                         this.geocoder.geocode(which_city)
