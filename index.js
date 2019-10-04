@@ -19,12 +19,17 @@ class YelpPepperChat {
         if (!('PepperResponse' in pepperChatResponses)) {
             throw "Yelp Module requires Pepper Chat Library's PepperResponse"
         }
+        if (!('randomlyChoose' in pepperChatResponses)) {
+            throw "Yelp Module requires Pepper Chat Library's randomlyChoose"
+        }        
         this.CarouselImage = pepperChatResponses.CarouselImage;
         this.Carousel = pepperChatResponses.Carousel;
         this.FullScreenImage = pepperChatResponses.FullScreenImage;
         this.BasicText = pepperChatResponses.BasicText;
         this.TriggerIntent = pepperChatResponses.TriggerIntent;
         this.PepperResponse = pepperChatResponses.PepperResponse;
+        this.randomlyChoose = pepperChatResponses.randomlyChoose;
+
         // Yelp API Key
         if (!('yelpApiKey' in config)) {
             throw "Please provide Yelp API key as property 'yelpApiKey' in config object"
@@ -212,7 +217,7 @@ class YelpPepperChat {
                     let spokenMapFollowUp = "You can click or say the following " + pause +
                         /*" Browse images " + pause +*/
                         " View Business \\pau=50\\ information " + pause + " Show me a map " + pause + "or say" + pause + "Go back";
-                    businessData.message = randomlyChoose(spokenMessage) + spokenMapFollowUp + " || " + businessData.name + " : " + businessData.location;
+                    businessData.message = this.randomlyChoose(spokenMessage) + spokenMapFollowUp + " || " + businessData.name + " : " + businessData.location;
                     let previouslyVisitedContext = contexts.filter(context => context.name == session + "yelp_biz_visited");
                     if (previouslyVisitedContext.length > 0) {
                         let orSayGoBack = "Or say \\pau=50\\ Go back \\pau=50\\ to go back to the results. ";
