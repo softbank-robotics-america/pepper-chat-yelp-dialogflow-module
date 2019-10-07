@@ -3,10 +3,10 @@
 This module provides functionality to explore Yelp conversationally through a Pepper running the SBRA Pepper Chat solution, using a Dialogflow V2 chatbot. It must be used in conjunction with the [Pepper Chat Dialogflow Fulfillment Library](https://github.com/softbank-robotics-america/pepper-chat-dialogflow-fulfillment-library).
 
 ## Usage
-### Agent
+### Step 1 - Copy intents into your Agent
 Download the zip of the agent in this module called SBRA.Yelp-Module. Copy the 5 intents (and associated entities) into your agent.
 
-### Webhook Dependency Declaration
+### Step 2 - Declare all dependencies into your Webhook
 Include the module in your Node.JS webhook (fulfillment) using the following includes statement in your package.json file. You will also need to include the Yelp Fusion package, the Node Geocoder package, and the Pepper Chat Dialogflow Fulfillment Library:
 
 ```     
@@ -16,7 +16,7 @@ Include the module in your Node.JS webhook (fulfillment) using the following inc
 "yelp-fusion": "^3.0.0"
 ```
 
-### Webhook Initialization
+### Step 3 - Initialize the modules in your Webhook
 Initialize the module in your index.js file as follows:
 
 ```
@@ -38,7 +38,7 @@ const { YelpPepperChat } = require('pepper-chat-yelp');
 const pepper_chat_yelp = new YelpPepperChat(PepperChatLibrary, yelpConfig);
 ```
 
-### Webhook Action Handler
+### Step 4 - Setup your action handler in your Webhook
 
 Actually using the library in action is as easy as:
 ```
