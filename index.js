@@ -160,10 +160,10 @@ class YelpPepperChat {
                 // If a repeat query:
                 if (parameters.go_back) {
                     const original = context.get("yelp");
-                    if (original.length > 0) {
-                        search_terms = original[0].parameters.search_term;
-                        filter_by = original[0].parameters.filter_by;
-                        which_city = original[0].parameters.which_city;
+                    if (original) {
+                        search_terms = original.parameters.search_term;
+                        filter_by = original.parameters.filter_by;
+                        which_city = original.parameters.which_city;
                     }
                     // If a new query:    
                 } else {
@@ -221,7 +221,8 @@ class YelpPepperChat {
                         " View Business \\pau=50\\ information " + pause + " Show me a map " + pause + "or say" + pause + "Go back";
                     businessData.message = this.randomlyChoose(spokenMessage) + spokenMapFollowUp + " || " + businessData.name + " : " + businessData.location;
                     let previouslyVisitedContext = context.get("yelp_biz_visited");
-                    if (previouslyVisitedContext.length > 0) {
+                    console.log(`yelp_biz_visited: ${JSON.stringify(previouslyVisitedContext)}`);
+                    if (previouslyVisitedContext.length) {
                         let orSayGoBack = "Or say \\pau=50\\ Go back \\pau=50\\ to go back to the results. ";
                         businessData.message = "Here are your options again for the business " + businessData.name + ". " + orSayGoBack + " || " + businessData.name + " : " + businessData.location;
                     }
@@ -264,7 +265,7 @@ class YelpPepperChat {
             },
             'yelp.search.business_selected.map_selected': () => {
                 let mapContext = context.get("yelp_business_selected");
-                let mapped_business = mapContext[0].parameters.business_info;
+                let mapped_business = mapContext.parameters.business_info;
                 console.log("Map Parameters: ", JSON.stringify(mapped_business));
                 let mapSpeech = "Here is a general sense of how to get to " + mapped_business.name + " \\pau=10000\\ || :)";
                 let map = new this.FullScreenImage(mapSpeech, mapped_business.image_url);
@@ -282,7 +283,7 @@ class YelpPepperChat {
             },
             'yelp.search.business_selected.more_info': () => {
                 let yelpBizContext = context.get("yelp_business_selected");
-                let business = yelpBizContext[0].parameters.business_info;
+                let business = yelpBizContext.parameters.business_info;
                 // console.log("Yelp Business Info Selected - Context: ", yelpBizContext[0]);
                 // console.log("Yelp Selected Business Info Parameters: ", business);
                 let message = "Here is the requested information! \\pau=8000\\ || Name: " + business.name + " | Phone Number: " +
