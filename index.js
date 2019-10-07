@@ -67,6 +67,12 @@ class YelpPepperChat {
         let { session } = body;
         let localContext, local = (localContext = contexts.filter(context => context.name == "local")[0]) ? localContext.parameters || {} : {}; // Local context stores Pepper Chat CMS parameters
         let initContext, init = (initContext = contexts.filter(context => context.name == "init")[0]) ? initContext.parameters || {} : {}; // Init context stores init1234 Chatbot-wide parameters (used for SmallTalk intents)
+        console.log(`local: ${JSON.stringify(local)}`)
+        console.log(`init: ${JSON.stringify(init)}`)
+        let localiRegex = /[\w\/\-]+contexts\/([\w\-]+)/, [localiContext, locali = (localiContext = contexts.filter(context => localiRegex.exec(context.name)[1] == "local")[0]) ? localiContext.parameters || {} : {}; // Local context stores Pepper Chat CMS parameters
+        let initiRegex = /[\w\/\-]+contexts\/([\w\-]+)/, initiContext, initi = (initiContext = contexts.filter(context => initiRegex.exec(context.name)[1] == "init")[0]) ? initiContext.parameters || {} : {}; // Init context stores init1234 Chatbot-wide parameters (used for SmallTalk intents)
+        console.log(`locali: ${JSON.stringify(locali)}`)
+        console.log(`initi: ${JSON.stringify(initi)}`)
         let localBizHandlers = {
             'yelp.search': () => {
                 /* First, define the Yelp API querying function, which will be used below.
