@@ -1,6 +1,6 @@
 # pepper-chat-yelp-module-dfv2
 
-This module provides functionality to explore Yelp conversationally through a Pepper running the SBRA Pepper Chat solution, using a Dialogflow V2 chatbot. It must be used in conjunction with the (Pepper Chat Dialogflow Fulfillment Library)[https://github.com/softbank-robotics-america/pepper-chat-dialogflow-fulfillment-library]
+This module provides functionality to explore Yelp conversationally through a Pepper running the SBRA Pepper Chat solution, using a Dialogflow V2 chatbot. It must be used in conjunction with the [Pepper Chat Dialogflow Fulfillment Library](https://github.com/softbank-robotics-america/pepper-chat-dialogflow-fulfillment-library).
 
 ## Usage
 ### Agent
