@@ -70,10 +70,6 @@ class YelpPepperChat {
         let initContext = context.get('init'), init = initContext ? initContext.parameters : {}; // Init context stores init1234 Chatbot-wide parameters (used for SmallTalk intents)
         console.log(`local: ${JSON.stringify(local)}`)
         console.log(`init: ${JSON.stringify(init)}`)
- /*       let localiRegex = /[\w\/\-]+\/contexts\/([\w\-]+)/, localiContext, locali = (localiContext = contexts.filter(context => localiRegex.exec(context.name)[1] == "local")[0]) ? localiContext.parameters || {} : {}; // Local context stores Pepper Chat CMS parameters
-        let initiRegex = /[\w\/\-]+\/contexts\/([\w\-]+)/, initiContext, initi = (initiContext = contexts.filter(context => initiRegex.exec(context.name)[1] == "init")[0]) ? initiContext.parameters || {} : {}; // Init context stores init1234 Chatbot-wide parameters (used for SmallTalk intents)
-        console.log(`locali: ${JSON.stringify(locali)}`)
-        console.log(`initi: ${JSON.stringify(initi)}`)*/
         let localBizHandlers = {
             'yelp.search': () => {
                 /* First, define the Yelp API querying function, which will be used below.
@@ -208,7 +204,6 @@ class YelpPepperChat {
             'yelp.search.business_selected': () => {
                 try {
                     console.log("yelp.search.business_selected has been triggered");
-                    console.log("Contexts -> " + JSON.stringify(contexts));
                     let yelpContext = context.get("yelp_storage");
                     let id = parameters.business_id;
                     console.log("business id: ", id);
@@ -225,7 +220,7 @@ class YelpPepperChat {
                         /*" Browse images " + pause +*/
                         " View Business \\pau=50\\ information " + pause + " Show me a map " + pause + "or say" + pause + "Go back";
                     businessData.message = this.randomlyChoose(spokenMessage) + spokenMapFollowUp + " || " + businessData.name + " : " + businessData.location;
-                    let previouslyVisitedContext = contexts.filter(context => context.name == session + "yelp_biz_visited");
+                    let previouslyVisitedContext = context.get("yelp_biz_visited");
                     if (previouslyVisitedContext.length > 0) {
                         let orSayGoBack = "Or say \\pau=50\\ Go back \\pau=50\\ to go back to the results. ";
                         businessData.message = "Here are your options again for the business " + businessData.name + ". " + orSayGoBack + " || " + businessData.name + " : " + businessData.location;
@@ -268,7 +263,6 @@ class YelpPepperChat {
                 }
             },
             'yelp.search.business_selected.map_selected': () => {
-                console.log("Contexts -> " + JSON.stringify(contexts));
                 let mapContext = context.get("yelp_business_selected");
                 let mapped_business = mapContext[0].parameters.business_info;
                 console.log("Map Parameters: ", JSON.stringify(mapped_business));
