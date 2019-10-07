@@ -222,7 +222,7 @@ class YelpPepperChat {
                     businessData.message = this.randomlyChoose(spokenMessage) + spokenMapFollowUp + " || " + businessData.name + " : " + businessData.location;
                     let previouslyVisitedContext = context.get("yelp_biz_visited");
                     console.log(`yelp_biz_visited: ${JSON.stringify(previouslyVisitedContext)}`);
-                    if (previouslyVisitedContext.length) {
+                    if (previouslyVisitedContext) {
                         let orSayGoBack = "Or say \\pau=50\\ Go back \\pau=50\\ to go back to the results. ";
                         businessData.message = "Here are your options again for the business " + businessData.name + ". " + orSayGoBack + " || " + businessData.name + " : " + businessData.location;
                     }
