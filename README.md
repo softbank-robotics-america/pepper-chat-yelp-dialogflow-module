@@ -6,7 +6,7 @@ This module provides functionality to explore Yelp conversationally through a Pe
 ### Step 1 - Copy intents into your Agent
 Download the zip of the agent in this module called Agent.Yelp-Module. Copy the 5 intents (and associated entities) into your agent.
 
-### Step 2 - Declare all dependencies into your Webhook
+### Step 2 - Declare all dependencies in your Webhook's manifest
 Include the module in your Node.JS webhook (fulfillment) using the following includes statement in your package.json file. You will also need to include the Yelp Fusion package, the Node Geocoder package, and the Pepper Chat Dialogflow Fulfillment Library:
 
 ```     
