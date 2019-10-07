@@ -207,8 +207,8 @@ class YelpPepperChat {
                     let yelpContext = context.get("yelp_storage");
                     let id = parameters.business_id;
                     console.log("business id: ", id);
-                    console.log("1st Yelp Storage context: ", yelpContext[0]);
-                    let businessData = yelpContext[0].parameters["business_" + id];
+                    console.log("1st Yelp Storage context: ", yelpContext);
+                    let businessData = yelpContext.parameters["business_" + id];
                     businessData.prettylocation = businessData.location.replace(/St$/, "Street").replace(/Blvd$/, "Boulevard").replace(/Ave$/, "Avenue").replace(/Cir$/, "Circle").replace(/Dr$/, "Drive");
                     console.log("typeof businessData: " + (typeof businessData));
                     let pause = " \\pau=300\\ ";
