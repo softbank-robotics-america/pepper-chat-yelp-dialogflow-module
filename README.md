@@ -10,7 +10,7 @@ Download the zip of the agent in this module called SBRA.Yelp-Module. Copy the 5
 Include the module in your Node.JS webhook (fulfillment) using the following includes statement in your package.json file. You will also need to include the Yelp Fusion package, the Node Geocoder package, and the Pepper Chat Dialogflow Fulfillment Library:
 
 ```     
-"pepper-chat-yelp": "softbank-robotics-america/pepper-chat-yelp-module#dialogflow-v2",
+"pepper-chat-yelp": "softbank-robotics-america/pepper-chat-yelp-dialogflow-module#dialogflow-v2",
 "pepper-chat-dialogflow": "softbank-robotics-america/pepper-chat-dialogflow-fulfillment-library#dialogflow-v2",
 "node-geocoder": "^3.23.0",
 "yelp-fusion": "^3.0.0"
