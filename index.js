@@ -163,7 +163,7 @@ class YelpPepperChat {
                 console.log("long:", long);
                 // If a repeat query:
                 if (parameters.go_back) {
-                    const original = contexts.filter(context => context.name == "yelp");
+                    const original = context.get("yelp");
                     if (original.length > 0) {
                         search_terms = original[0].parameters.search_term;
                         filter_by = original[0].parameters.filter_by;
@@ -209,7 +209,7 @@ class YelpPepperChat {
                 try {
                     console.log("yelp.search.business_selected has been triggered");
                     console.log("Contexts -> " + JSON.stringify(contexts));
-                    let yelpContext = contexts.filter(context => context.name == "yelp_storage");
+                    let yelpContext = context.get("yelp_storage");
                     let id = parameters.business_id;
                     console.log("business id: ", id);
                     console.log("1st Yelp Storage context: ", yelpContext[0]);
@@ -269,7 +269,7 @@ class YelpPepperChat {
             },
             'yelp.search.business_selected.map_selected': () => {
                 console.log("Contexts -> " + JSON.stringify(contexts));
-                let mapContext = contexts.filter(context => context.name == session + "/contexts/" + "yelp_business_selected");
+                let mapContext = context.get("yelp_business_selected");
                 let mapped_business = mapContext[0].parameters.business_info;
                 console.log("Map Parameters: ", JSON.stringify(mapped_business));
                 let mapSpeech = "Here is a general sense of how to get to " + mapped_business.name + " \\pau=10000\\ || :)";
@@ -287,7 +287,7 @@ class YelpPepperChat {
                 mapThenReturnToBizMenu.send((response));
             },
             'yelp.search.business_selected.more_info': () => {
-                let yelpBizContext = contexts.filter(context => context.name == session + "/contexts/" + "yelp_business_selected");
+                let yelpBizContext = context.get("yelp_business_selected");
                 let business = yelpBizContext[0].parameters.business_info;
                 // console.log("Yelp Business Info Selected - Context: ", yelpBizContext[0]);
                 // console.log("Yelp Selected Business Info Parameters: ", business);
