@@ -63,10 +63,11 @@ class YelpPepperChat {
         this.latitude = 'latitude' in config ? config.latitude : '40.723402';
         this.longitude = 'longitude' in config ? config.longitude : '-74.006673';
     }
-    localBusinessHandler( { body }, response, { action, contexts, parameters } ) {
+    localBusinessHandler( { body }, response, agent ) {
         let { session } = body;
-        let localContext, local = (localContext = contexts.filter(context => context.name == "local")[0]) ? localContext.parameters || {} : {}; // Local context stores Pepper Chat CMS parameters
-        let initContext, init = (initContext = contexts.filter(context => context.name == "init")[0]) ? initContext.parameters || {} : {}; // Init context stores init1234 Chatbot-wide parameters (used for SmallTalk intents)
+        let { action, context, parameters } = agent;
+        let localContext = context.get('local'), local = localContext ? localContext.parameters : {}; // Local context stores Pepper Chat CMS parameters
+        let initContext = context.get('init'), init = initContext ? initContext.parameters : {}; // Init context stores init1234 Chatbot-wide parameters (used for SmallTalk intents)
         console.log(`local: ${JSON.stringify(local)}`)
         console.log(`init: ${JSON.stringify(init)}`)
  /*       let localiRegex = /[\w\/\-]+\/contexts\/([\w\-]+)/, localiContext, locali = (localiContext = contexts.filter(context => localiRegex.exec(context.name)[1] == "local")[0]) ? localiContext.parameters || {} : {}; // Local context stores Pepper Chat CMS parameters
