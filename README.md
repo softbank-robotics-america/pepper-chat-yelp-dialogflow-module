@@ -40,7 +40,7 @@ const pepper_chat_yelp = new YelpPepperChat(PepperChatLibrary, yelpConfig);
 
 ### Step 4 - Setup your action handler in your Webhook
 
-Actually using the library in action is as easy as:
+Actually using the library in your index.js file to handle requests is as easy as:
 ```
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, response) => {
  let agent = new WebhookClient({request: request, response: response});
