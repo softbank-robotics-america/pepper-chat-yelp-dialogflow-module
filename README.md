@@ -69,5 +69,6 @@ LONGITUDE: ###.#####
 E.g. LATITUDE: 37.7749,
 LONGITUDE: -122.4194
 
-NOTE: North & East values are positive numbers; South & West values are represented as negative numbers)
+NOTE: North & East values are represented as positive numbers, while South & West values 
+are represented as negative numbers
 ```
