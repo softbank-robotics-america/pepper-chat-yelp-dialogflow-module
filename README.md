@@ -66,9 +66,10 @@ Provide the latitude and longitude to the module through the Pepper Chat CMS via
 LATITUDE: ##.#####,
 LONGITUDE: ###.#####
 
-E.g. LATITUDE: 37.7749,
+e.g. 
+LATITUDE: 37.7749,
 LONGITUDE: -122.4194
 
 NOTE: North & East values are represented as positive numbers, while South & West values 
-are represented as negative numbers
+are represented as negative numbers.
 ```
