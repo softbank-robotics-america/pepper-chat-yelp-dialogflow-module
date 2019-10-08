@@ -1,3 +1,6 @@
+const yelpModule = require('yelp-fusion');
+const geocoderModule = require('node-geocoder');
+
 class YelpPepperChat {
     constructor(pepperChatResponses, config) {
         // Pepper Chat Library responses required
@@ -39,27 +42,26 @@ class YelpPepperChat {
             throw "Please provide Google Static Maps API key as property 'googleMapsApiKey' in config object"
         }
         // Geocoder API key optional -- allows for impromptu searching of other cities
-        if ('nodeGeocoderModule' in config) {
-            if (!('geocoderApiKey' in config)) {
-                throw "Please provide Geocoder API key as property 'geocoderApiKey' in config object"
-            }
-            let options = {
-                provider: 'google',
-                apiKey: config.geocoderApiKey,
-                httpAdapter: 'https', // Default
-                formatter: null // 'gpx', 'string', ...
-            };
-            //this.geocoder = new config.nodeGeocoderModule(options);
-            this.geocoder_enabled = true;
-        } else {
-            this.geocoder_enabled = false;
+        if (!('geocoderApiKey' in config)) {
+            throw "Please provide Geocoder API key as property 'geocoderApiKey' in config object"
         }
+        let options = {
+            provider: 'google',
+            apiKey: config.geocoderApiKey,
+            httpAdapter: 'https', // Default
+            formatter: null // 'gpx', 'string', ...
+        };
         try {
-            this.yelp_client = config.yelpModule.client(config.yelpApiKey)
+            this.yelp_client = yelpModule.client(config.yelpApiKey)
             this.googleMapsApiKey = config.googleMapsApiKey;
         } catch (err) {
             throw `Could not properly initialize Yelp client: ${err}`
         }
+        try {
+            this.geocoder = new geocoderModule(options);
+        } catch (err) {
+            throw `Could not properly initialize Geocoder client: ${err}`
+        }        
         this.latitude = 'latitude' in config ? config.latitude : '40.723402';
         this.longitude = 'longitude' in config ? config.longitude : '-74.006673';
     }

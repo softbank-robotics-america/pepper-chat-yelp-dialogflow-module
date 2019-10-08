@@ -14,6 +14,10 @@
     "host",
     "yelp"
   ],
+  "dependencies": {
+    "node-geocoder": "^3.23.0",
+    "yelp-fusion": "^3.0.0"
+  },
   "author": "Daniel Schofield",
   "email": "daniel.schofield@softbankrobotics.com",
   "license": "MIT"
