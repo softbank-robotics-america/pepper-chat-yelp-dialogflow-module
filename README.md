@@ -7,13 +7,11 @@ This module provides functionality to explore Yelp conversationally through a Pe
 Download the zip of the agent in this module called Agent.Yelp-Module. Copy the 5 intents (and associated entities) into your agent.
 
 ### Step 2 - Declare all dependencies in your Webhook's manifest
-Include the module in your Node.JS webhook (fulfillment) using the following includes statement in your package.json file. You will also need to include the Yelp Fusion package, the Node Geocoder package, and the Pepper Chat Dialogflow Fulfillment Library:
+Include the module in your Node.JS webhook (fulfillment) naming the following dependencies statement in your package.json file. In addition to the Pepper Chat Yelp module, you will also need to include the Pepper Chat Dialogflow Fulfillment Library:
 
 ```     
 "pepper-chat-yelp": "softbank-robotics-america/pepper-chat-yelp-dialogflow-module#dialogflow-v2",
-"pepper-chat-dialogflow": "softbank-robotics-america/pepper-chat-dialogflow-fulfillment-library#dialogflow-v2",
-"node-geocoder": "^3.23.0",
-"yelp-fusion": "^3.0.0"
+"pepper-chat-dialogflow": "softbank-robotics-america/pepper-chat-dialogflow-fulfillment-library#dialogflow-v2"
 ```
 
 ### Step 3 - Initialize the modules in your Webhook
@@ -62,3 +60,14 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((request, resp
   }
 }
   ```
+### Step 5 - Customize the module for a given robot from within the Pepper Chat CMS
+Provide the latitude and longitude to the module through the Pepper Chat CMS via parameters
+```
+LATITUDE: ##.#####,
+LONGITUDE: ###.#####
+
+E.g. LATITUDE: 37.7749,
+LONGITUDE: -122.4194
+
+NOTE: North & East values are positive numbers; South & West values are represented as negative numbers)
+```
