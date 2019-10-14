@@ -29,9 +29,7 @@ const PepperChatLibrary = require('pepper-chat-dialogflow');
 const yelpApiKey = 'Insert Yelp API key here';
 const googleMapsApiKey = 'Insert Google Maps API key here';
 const geocoderApiKey = 'Insert Google Geocoder API key here';
-const yelpModule = require('yelp-fusion'); // 
-const nodeGeocoderModule = require('node-geocoder');
-const yelpConfig = {yelpApiKey, googleMapsApiKey, geocoderApiKey, yelpModule, nodeGeocoderModule}; // Keys must match!
+const yelpConfig = {yelpApiKey, googleMapsApiKey, geocoderApiKey}; // Keys must match!
 const { YelpPepperChat } = require('pepper-chat-yelp');
 const pepper_chat_yelp = new YelpPepperChat(PepperChatLibrary, yelpConfig);
 ```
