@@ -58,7 +58,7 @@ class YelpPepperChat {
             throw `Could not properly initialize Yelp client: ${err}`
         }
         try {
-            this.geocoder = new geocoderModule(options);
+            this.geocoder = geocoderModule(options);
         } catch (err) {
             throw `Could not properly initialize Geocoder client: ${err}`
         }        
